@@ -1,0 +1,32 @@
+{
+    "name": "simpaypl/laravel",
+    "description": "Official SimPay.pl Laravel package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Patryk Vizauer",
+            "email": "p.vizauer@simpay.pl"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^11.0",
+        "spatie/laravel-package-tools": "^1.18.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SimPay\\Laravel\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SimPay\\Laravel\\SimPayServiceProvider"
+            ],
+            "aliases": {
+                "SimPay": "SimPay\\Laravel\\Facades\\SimPay"
+            }
+        }
+    }
+}
