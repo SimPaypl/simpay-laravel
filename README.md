@@ -67,13 +67,13 @@ SimPay::payment()->generate()
     ->amount(15.00)
     // rest of fields is optional
     ->returns(
-        new SimPay\Laravel\Dto\ReturnData(
+        new \SimPay\Laravel\Dto\ReturnData(
             'successUrl',
             'failedUrl',
         ),
     )
     ->billing(
-        new SimPay\Laravel\Dto\Payment\CustomerFullData(
+        new \SimPay\Laravel\Dto\Payment\CustomerFullData(
             'First name',
             'Surname',
             'Street',
@@ -84,10 +84,10 @@ SimPay::payment()->generate()
             'Post Code',
             'Country code',
             'Company',
-        );
+        )
     )
     ->shipping(
-        new SimPay\Laravel\Dto\Payment\CustomerFullData(
+        new \SimPay\Laravel\Dto\Payment\CustomerFullData(
             'First name',
             'Surname',
             'Street',
@@ -98,17 +98,17 @@ SimPay::payment()->generate()
             'Post Code',
             'Country code',
             'Company',
-        );
+        )
     )
     ->customer(
-        new SimPay\Laravel\Dto\Payment\CustomerData(
+        new \SimPay\Laravel\Dto\Payment\CustomerData(
             'Name',
             'Email',
             'IP address',
         )
     )
     ->antifraud(
-        new SimPay\Laravel\Dto\Payment\AntiFraudData(
+        new \SimPay\Laravel\Dto\Payment\AntiFraudData(
             'UserAgent',
             'SteamID64',
             'Minecraft player username',
@@ -236,9 +236,9 @@ Response is boolean. True means signature is valid. False - invalid.
 ```php
 SimPay::directBilling()->generate()
     ->amount(15.00)
-    ->amountType(SimPay\Laravel\Enums\DirectBilling\AmountType::Net)
+    ->amountType(\SimPay\Laravel\Enums\DirectBilling\AmountType::Net)
     // other are optionals
-    ->returns(new SimPay\Laravel\Dto\ReturnData(
+    ->returns(new \SimPay\Laravel\Dto\ReturnData(
         'https://success.pl',
         'https://failure.com',
     ))
