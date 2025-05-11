@@ -2,12 +2,16 @@
 
 namespace SimPay\Laravel\Responses\Payment\TransactionInfo;
 
+use SimPay\Laravel\Responses\Payment\TransactionInfo\Amount\OriginalAmountResponse;
+
 final readonly class AmountResponse
 {
     public function __construct(
         public float  $value,
         public string $currency,
         public ?float $commission = null,
+        public ?string $commissionCurrency = null,
+        public OriginalAmountResponse $original,
     )
     {
     }
@@ -18,6 +22,8 @@ final readonly class AmountResponse
             $json['value'],
             $json['currency'],
             $json['commission'],
+            $json['commission_currency'],
+            OriginalAmountResponse::from($json['original']),
         );
     }
 }

@@ -8,6 +8,7 @@ readonly final class CustomerData
         private ?string $name = null,
         private ?string $email = null,
         private ?string $ip = null,
+        private ?string $countryCode = null,
     )
     {
     }
@@ -18,6 +19,7 @@ readonly final class CustomerData
             'name' => $this->name,
             'email' => $this->email,
             'ip' => $this->ip,
+            'countryCode' => $this->countryCode,
         ];
     }
 }

@@ -29,6 +29,7 @@ final readonly class TransactionInfoResponse
         public ?Carbon                   $expiresAt = null,
         public ?Carbon                   $createdAt = null,
         public ?Carbon                   $updatedAt = null,
+        public string                    $payerTransactionId,
     )
     {
     }
@@ -62,6 +63,7 @@ final readonly class TransactionInfoResponse
             $json['expires_at'] ? Carbon::parse($json['expires_at']) : null,
             $json['created_at'] ? Carbon::parse($json['created_at']) : null,
             $json['updated_at'] ? Carbon::parse($json['updated_at']) : null,
+            $json['payer_transaction_id'],
         );
     }
 }

@@ -105,6 +105,7 @@ SimPay::payment()->generate()
             'Name',
             'Email',
             'IP address',
+            'Country Code (eg. PL, US, CY, GB)',
         )
     )
     ->antifraud(
@@ -118,6 +119,16 @@ SimPay::payment()->generate()
     ->control('Control Data (for your integration, ex. your id from database)')
     ->description('Transaction Description')
     ->currency('Currency Code (default: PLN)')
+    ->directChannel('blik')
+    ->channelTypes(new \SimPay\Laravel\Dto\Payment\ChannelTypeData(
+        blik: true,
+        transfer: true,
+        cards: true,
+        ewallets: true,  
+        paypal: true,
+        paysafe: true,
+        latam: true,
+    ))
     // make() is required to create payment.
     ->make();
 ```
@@ -151,6 +162,7 @@ Public parameters:
 - `expiresAt` (Carbon instance or null)
 - `createdAt` (Carbon instance)
 - `updatedAt` (Carbon instance)
+- `payerTransactionId` (string) - payment identifier which is shown to payer on gateway and in mail messages
 
 `status` is an enum located in `SimPay\Laravel\Enums\Payment\TransactionStatus`.
 
@@ -168,6 +180,14 @@ Public parameters:
 - `value` (float)
 - `currency` (string)
 - `commission` (float or null)
+- `commissionCurrency` (string or null)
+- `original` (see below)
+
+`amount.original` is an instance of `SimPay\Laravel\Responses\Payment\TransactionInfo\Amount\OriginalAmountResponse`.
+Public parameters:
+- `value` (float)
+- `currency` (string)
+- `pln_rate` (string or null)
 
 `redirects` is an instance of `SimPay\Laravel\Responses\Payment\TransactionInfo\RedirectsResponse`.
 Public parameters (string or null):
@@ -179,6 +199,7 @@ Public parameters (string or null):
 - `name`
 - `email`
 - `ip`
+- `country`
 
 `billing` and `shipping` are instances of `SimPay\Laravel\Responses\Payment\TransactionInfo\CustomerFullDataResponse`.
 Public parameters (string or null):
@@ -229,6 +250,19 @@ SimPay::payment()->ipnSignatureValid(request());
 ```
 
 Response is boolean. True means signature is valid. False - invalid.
+
+### Get service currencies
+```php
+SimPay::payment()->currencies();
+```
+Response is an array of `SimPay\Laravel\Responses\Payment\ServiceCurrency\CurrencyResponse`.
+Public parameters:
+- `iso` (string)
+- `plnRate` (string)
+- `nbpTable` (string or null)
+- `prefix` (string or null)
+- `suffix` (string or null)
+- `updatedAt` (Carbon instance or null)
 
 ## Direct Billing
 
