@@ -8,6 +8,7 @@ final readonly class CustomerResponse
         public ?string $name = null,
         public ?string $email = null,
         public ?string $ip = null,
+        public ?string $country = null,
     )
     {
     }
@@ -18,6 +19,7 @@ final readonly class CustomerResponse
             $json['name'] ?? null,
             $json['email'] ?? null,
             $json['ip'] ?? null,
+            $json['country'] ?? null,
         );
     }
 }

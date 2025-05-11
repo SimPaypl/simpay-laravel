@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use SimPay\Laravel\Exceptions\SimPayException;
 use SimPay\Laravel\Helpers\ArrayHelper;
 use SimPay\Laravel\Responses\Payment\ServiceChannel\ChannelResponse;
+use SimPay\Laravel\Responses\Payment\ServiceCurrency\CurrencyResponse;
 use SimPay\Laravel\Responses\Payment\TransactionInfoResponse;
 use SimPay\Laravel\Services\Service;
 
@@ -48,5 +49,14 @@ final class Payment extends Service
     public function channels(): array
     {
         return (new ServiceChannels())->get();
+    }
+
+    /**
+     * @return CurrencyResponse[]
+     * @throws SimPayException
+     */
+    public function currencies(): array
+    {
+        return (new ServiceCurrencies())->get();
     }
 }

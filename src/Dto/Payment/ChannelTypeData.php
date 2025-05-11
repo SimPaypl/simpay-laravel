@@ -11,6 +11,7 @@ readonly final class ChannelTypeData
         private bool $ewallets = true,
         private bool $paypal = true,
         private bool $paysafe = true,
+        private bool $latam = true,
     )
     {
     }
@@ -24,6 +25,7 @@ readonly final class ChannelTypeData
             'ewallets' => $this->ewallets,
             'paypal' => $this->paypal,
             'paysafe' => $this->paysafe,
+            'latam' => $this->latam,
         ];
     }
 }
