@@ -85,7 +85,7 @@ final class GenerateTransaction extends Service
         }
 
         if (!empty($this->channelTypes)) {
-            $payload['channelTypes'] = $this->channelTypes;
+            $payload['channelTypes'] = $this->channelTypes->toArray();
         }
 
         if (!empty($this->referer)) {
