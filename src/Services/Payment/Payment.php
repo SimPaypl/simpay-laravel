@@ -59,4 +59,12 @@ final class Payment extends Service
     {
         return (new ServiceCurrencies())->get();
     }
+
+    /**
+     * @throws SimPayException
+     */
+    public function blikLevel0(): InitiateBlikLevel0
+    {
+        return (new InitiateBlikLevel0());
+    }
 }
