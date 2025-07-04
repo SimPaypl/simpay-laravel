@@ -19,7 +19,7 @@ abstract class Service
      * @throws ValidationFailedException
      * @throws AuthorizationException
      */
-    protected function sendRequest(string $uri, string $method, array $options = []): PromiseInterface|Response
+    protected function sendRequest(string $uri, string $method, array $options = [], bool $checkHeaders = true): PromiseInterface|Response
     {
         try {
             $request = Http::withToken(config('simpay.bearer_token'))->withHeaders([
@@ -30,6 +30,10 @@ abstract class Service
             ])->send($method, sprintf('https://api.simpay.pl/%s', $uri), $options);
         } catch (ConnectionException $exception) {
             throw new SimPayException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        if(!$checkHeaders) {
+            return $request;
         }
 
         if ($request->successful()) {

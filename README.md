@@ -297,9 +297,15 @@ try {
 }
 catch(\SimPay\Laravel\Exceptions\BlikLevel0\InvalidBlikTicketException $exception) {
     // notify user that BLIK ticket is not valid
+    
+    // you can also get errorCode returned from our API:
+    $exception->errorCode;
 }
 catch(\SimPay\Laravel\Exceptions\SimPayException $exception) {
     // other error
+    
+    // you can also get errorCode returned from our API:
+    $exception->errorCode;
 }
 ```
 If ticket has been accepted, $success will be true.

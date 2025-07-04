@@ -29,6 +29,7 @@ final class InitiateBlikLevel0 extends Service
             sprintf('payment/%s/blik/level0/%s', config('simpay.payment.service_id'), $this->transactionId),
             'POST',
             ['json' => $payload],
+            checkHeaders: false,
         );
 
         if ($level0->successful()) {
@@ -37,7 +38,8 @@ final class InitiateBlikLevel0 extends Service
 
         if (!$level0->badRequest()) {
             throw new SimPayException(
-                sprintf('[%s] %s', $level0->json('errorCode', $level0->status()), $level0->json('message'))
+                message: sprintf('[%s] %s', $level0->json('errorCode', $level0->status()), $level0->json('message')),
+                errorCode: $level0->json('errorCode'),
             );
         }
 
@@ -51,10 +53,16 @@ final class InitiateBlikLevel0 extends Service
             'BLIK_CODE_USED',
             'BLIK_CODE_NOT_SUPPORTED',
         ])) {
-            throw new InvalidBlikTicketException(sprintf('[%s] %s', $errorCode, $level0->json('message')));
+            throw new InvalidBlikTicketException(
+                message: sprintf('[%s] %s', $errorCode, $level0->json('message')),
+                errorCode: $errorCode,
+            );
         }
 
-        throw new SimPayException(sprintf('[%s] %s', $errorCode, $level0->json('message')));
+        throw new SimPayException(
+            message: sprintf('[%s] %s', $errorCode, $level0->json('message')),
+            errorCode: $errorCode,
+        );
     }
 
     public function ticket(string $ticket): self
