@@ -264,6 +264,53 @@ Public parameters:
 - `suffix` (string or null)
 - `updatedAt` (Carbon instance or null)
 
+### Make BLIK Level 0 transaction
+```php
+// at first generate payment
+
+// only required fields are shown
+$payment = SimPay::payment()->generate()
+    ->amount(15.00)
+    ->customer(
+        new \SimPay\Laravel\Dto\Payment\CustomerData(
+            email: 'Email',
+            ip: 'IP address',
+            countryCode: 'PL', // for BLIK it must be PL
+        )
+    )
+    ->antifraud(
+        new \SimPay\Laravel\Dto\Payment\AntiFraudData(
+            userAgent: 'UserAgent (REQUIRED)',
+        )
+    )
+    ->currency('PLN')
+    ->directChannel('blik-level0') // it must be set to blik-level0
+    ->make();
+
+// Now make Level 0 call
+try {
+    $success = SimPay::payment()->blikLevel0()
+    ->ticket('111222') // BLIK code
+    ->ticketType(\SimPay\Laravel\Enums\Payment\BlikLevel0TicketType::T6) // for now, only T6 codes are supported
+    ->transaction($payment) // you may pass full TransactionGenerateResponse or just transactionId
+    ->make();
+}
+catch(\SimPay\Laravel\Exceptions\BlikLevel0\InvalidBlikTicketException $exception) {
+    // notify user that BLIK ticket is not valid
+}
+catch(\SimPay\Laravel\Exceptions\SimPayException $exception) {
+    // other error
+}
+```
+If ticket has been accepted, $success will be true.
+
+**WARNING**: This does not mean that transaction is finished, you still need to listen to our IPN messages.
+
+If ticket code is not valid, two exceptions may be thrown:
+- \SimPay\Laravel\Exceptions\BlikLevel0\InvalidBlikTicketException
+- \SimPay\Laravel\Exceptions\SimPayException
+
+
 ## Direct Billing
 
 ### Generate transaction
