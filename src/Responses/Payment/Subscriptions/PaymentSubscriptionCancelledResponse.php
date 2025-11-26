@@ -16,7 +16,7 @@ final readonly class PaymentSubscriptionCancelledResponse
     {
     }
 
-    public function from(array $data): self
+    public static function from(array $data): self
     {
         return new self(
             cancelledBy: SubscriptionCancelledBy::from($data['by']),

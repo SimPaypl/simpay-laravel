@@ -15,7 +15,7 @@ final readonly class PaymentSubscriptionsListResponse
     {
     }
 
-    public function from(array $data): self
+    public static function from(array $data): self
     {
         $subscriptions = [];
         foreach ($data['data'] as $subscription) {

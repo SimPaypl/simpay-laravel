@@ -15,7 +15,7 @@ final readonly class PaymentSubscriptionBlikResponse
     {
     }
 
-    public function from(array $data): self
+    public static function from(array $data): self
     {
         return new self(
             model: BlikModel::from($data['model']),

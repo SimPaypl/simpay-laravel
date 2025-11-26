@@ -25,7 +25,7 @@ final readonly class PaymentSubscriptionResponse
     {
     }
 
-    public function from(array $data): self
+    public static function from(array $data): self
     {
         return new self(
             id: $data['id'],
