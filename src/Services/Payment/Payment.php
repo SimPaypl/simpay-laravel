@@ -8,6 +8,7 @@ use SimPay\Laravel\Helpers\ArrayHelper;
 use SimPay\Laravel\Responses\Payment\ServiceChannel\ChannelResponse;
 use SimPay\Laravel\Responses\Payment\ServiceCurrency\CurrencyResponse;
 use SimPay\Laravel\Responses\Payment\TransactionInfoResponse;
+use SimPay\Laravel\Services\Payment\Subscriptions\PaymentSubscription;
 use SimPay\Laravel\Services\Service;
 
 final class Payment extends Service
@@ -66,5 +67,10 @@ final class Payment extends Service
     public function blikLevel0(): InitiateBlikLevel0
     {
         return (new InitiateBlikLevel0());
+    }
+
+    public function subscriptions(): PaymentSubscription
+    {
+        return (new PaymentSubscription());
     }
 }
