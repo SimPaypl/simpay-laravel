@@ -33,8 +33,8 @@ final readonly class PaymentBlikAliasResponse
             blikKey: $data['blik_key'],
             status: BlikAliasStatus::from($data['status']),
             expiresAt: $data['expires_at'] ? Carbon::parse($data['expires_at']) : null,
-            createdAt: $data['created_at'],
-            updatedAt: $data['updated_at'],
+            createdAt: Carbon::parse($data['created_at']),
+            updatedAt: Carbon::parse($data['updated_at']),
         );
     }
 }
