@@ -19,7 +19,7 @@ final readonly class PaymentSubscriptionsListResponse
     {
         $subscriptions = [];
         foreach ($data['data'] as $subscription) {
-            PaymentSubscriptionResponse::from($subscription);
+            $subscriptions[] = PaymentSubscriptionResponse::from($subscription);
         }
 
         return new self($subscriptions, PaginationResponse::from($data['pagination']));
