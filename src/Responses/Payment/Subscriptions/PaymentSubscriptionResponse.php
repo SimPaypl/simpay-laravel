@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace SimPay\Laravel\Responses\Payment\Subscriptions;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use SimPay\Laravel\Enums\Payment\Subscription\SubscriptionMode;
 use SimPay\Laravel\Enums\Payment\Subscription\SubscriptionStatus;
 
