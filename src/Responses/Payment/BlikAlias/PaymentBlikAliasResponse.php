@@ -6,19 +6,21 @@ namespace SimPay\Laravel\Responses\Payment\BlikAlias;
 use Illuminate\Support\Carbon;
 use SimPay\Laravel\Enums\Payment\BlikAlias\BlikAliasStatus;
 use SimPay\Laravel\Enums\Payment\BlikAlias\BlikAliasType;
+use SimPay\Laravel\Responses\Payment\Subscriptions\PaymentSubscriptionResponse;
 
 final readonly class PaymentBlikAliasResponse
 {
     public function __construct(
-        public string $id,
-        public BlikAliasType $type,
-        public string $value,
-        public string $label,
-        public ?string $blikKey,
-        public BlikAliasStatus $status,
-        public ?Carbon $expiresAt,
-        public Carbon $createdAt,
-        public Carbon $updatedAt,
+        public string                       $id,
+        public BlikAliasType                $type,
+        public string                       $value,
+        public string                       $label,
+        public ?string                      $blikKey,
+        public BlikAliasStatus              $status,
+        public ?Carbon                      $expiresAt,
+        public Carbon                       $createdAt,
+        public Carbon                       $updatedAt,
+        public ?PaymentSubscriptionResponse $subscription,
     )
     {
     }
@@ -35,6 +37,7 @@ final readonly class PaymentBlikAliasResponse
             expiresAt: $data['expires_at'] ? Carbon::parse($data['expires_at']) : null,
             createdAt: Carbon::parse($data['created_at']),
             updatedAt: Carbon::parse($data['updated_at']),
+            subscription: !empty($data['subscription']) ? PaymentSubscriptionResponse::from($data['subscription']) : null,
         );
     }
 }

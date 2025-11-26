@@ -9,8 +9,8 @@ use SimPay\Laravel\Responses\Payment\BlikAlias\PaymentBlikAliasResponse;
 final readonly class PaymentSubscriptionBlikResponse
 {
     public function __construct(
-        public BlikModel                $model,
-        public PaymentBlikAliasResponse $alias,
+        public BlikModel                 $model,
+        public ?PaymentBlikAliasResponse $alias,
     )
     {
     }
@@ -19,7 +19,7 @@ final readonly class PaymentSubscriptionBlikResponse
     {
         return new self(
             model: BlikModel::from($data['model']),
-            alias: PaymentBlikAliasResponse::from($data['alias']),
+            alias: !empty($data['alias']) ? PaymentBlikAliasResponse::from($data['alias']) : null,
         );
     }
 }

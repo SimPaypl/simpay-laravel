@@ -9,6 +9,7 @@ readonly final class AntiFraudData
         private ?string $steamId64 = null,
         private ?string $minecraftUsername = null,
         private ?string $minecraftUuid = null,
+        private ?string $systemId = null,
     )
     {
     }
@@ -20,6 +21,7 @@ readonly final class AntiFraudData
             'steamid' => $this->steamId64,
             'mcusername' => $this->minecraftUsername,
             'mcid' => $this->minecraftUuid,
+            'systemId' => $this->systemId,
         ];
     }
 }
