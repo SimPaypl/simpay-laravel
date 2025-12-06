@@ -52,6 +52,6 @@ abstract class Service
             throw new ResourceNotFoundException($request->json('message'), errorCode: $request->json('errorCode'));
         }
 
-        throw new SimPayException('unexpected api error. '. $request->status() . ': ' . $request->json('message', $request->body()), errorCode: $request->json('errorCode'));
+        throw new SimPayException('API ERROR '. $request->status() . ': ' . $request->json('message', $request->body()), errorCode: $request->json('errorCode'));
     }
 }

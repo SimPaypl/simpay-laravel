@@ -16,4 +16,9 @@ class PaymentSubscription extends Service
     {
         return (new CreateBlikSubscription());
     }
+
+    public function blikAutoPayment(string $subscriptionId): BlikAutoPayment
+    {
+        return (new BlikAutoPayment($subscriptionId));
+    }
 }
