@@ -12,6 +12,7 @@ readonly final class ChannelTypeData
         private bool $paypal = true,
         private bool $paysafe = true,
         private bool $latam = true,
+        private bool $postponed = false,
     )
     {
     }
@@ -26,6 +27,7 @@ readonly final class ChannelTypeData
             'paypal' => $this->paypal,
             'paysafe' => $this->paysafe,
             'latam' => $this->latam,
+            'postponed' => $this->postponed,
         ];
     }
 }

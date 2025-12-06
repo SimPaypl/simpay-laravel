@@ -11,7 +11,7 @@ final readonly class AmountResponse
         public string $currency,
         public ?float $commission = null,
         public ?string $commissionCurrency = null,
-        public OriginalAmountResponse $original,
+        public ?OriginalAmountResponse $original = null,
     )
     {
     }
@@ -23,7 +23,7 @@ final readonly class AmountResponse
             $json['currency'],
             $json['commission'],
             $json['commission_currency'],
-            OriginalAmountResponse::from($json['original']),
+            !empty($json['original']) ? OriginalAmountResponse::from($json['original']) : null,
         );
     }
 }
