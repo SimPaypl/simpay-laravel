@@ -11,4 +11,9 @@ class PaymentSubscription extends Service
     {
         return (new SubscriptionsList());
     }
+
+    public function createBlik(): CreateBlikSubscription
+    {
+        return (new CreateBlikSubscription());
+    }
 }

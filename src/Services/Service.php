@@ -41,7 +41,7 @@ abstract class Service
         }
 
         if ($request->forbidden() || $request->unauthorized()) {
-            throw new AuthorizationException($request->json('message', $request->json('errorCode')));
+            throw new AuthorizationException($request->json('message', $request->json('errorCode')), errorCode: $request->json('errorCode'));
         }
 
         if ($request->unprocessableContent()) {
@@ -49,9 +49,9 @@ abstract class Service
         }
 
         if($request->notFound()) {
-            throw new ResourceNotFoundException($request->json('message'));
+            throw new ResourceNotFoundException($request->json('message'), errorCode: $request->json('errorCode'));
         }
 
-        throw new SimPayException('unexpected api error. '. $request->status() . ': ' . $request->json('message', $request->body()));
+        throw new SimPayException('unexpected api error. '. $request->status() . ': ' . $request->json('message', $request->body()), errorCode: $request->json('errorCode'));
     }
 }
