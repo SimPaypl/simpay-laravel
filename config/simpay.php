@@ -13,4 +13,5 @@ return [
         'service_id' => env('SIMPAY_PAYMENT_SERVICE_ID'),
         'hash' => env('SIMPAY_PAYMENT_SERVICE_HASH'),
     ],
+    'api_url' => env('SIMPAY_API_URL', 'https://api.simpay.pl'),
 ];

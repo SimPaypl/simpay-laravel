@@ -27,7 +27,7 @@ abstract class Service
                 'Accept' => 'application/json',
                 'X-SIM-VERSION' => SimPay::VERSION,
                 'X-SIM-PLATFORM' => 'PHP-LARAVEL',
-            ])->send($method, sprintf('https://api.simpay.pl/%s', $uri), $options);
+            ])->send($method, sprintf('%s/%s', config('simpay.api_url', 'https://api.simpay.pl') , $uri), $options);
         } catch (ConnectionException $exception) {
             throw new SimPayException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
         }
