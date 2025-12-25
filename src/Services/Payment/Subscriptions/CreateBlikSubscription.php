@@ -97,7 +97,7 @@ class CreateBlikSubscription extends Service
             $descriptions['line2'] = mb_substr($description, 35, 35);
         }
         if (mb_strlen($description) > 70) {
-            $descriptions['line3'] = mb_substr($description, 35, 70);
+            $descriptions['line3'] = mb_substr($description, 70, 35);
         }
 
         $this->descriptions = $descriptions;
