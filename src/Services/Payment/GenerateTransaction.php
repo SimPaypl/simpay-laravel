@@ -35,10 +35,6 @@ final class GenerateTransaction extends Service
      */
     public function make(): TransactionGeneratedResponse
     {
-        if (empty($this->amount)) {
-            throw new SimPayException('You have to set amount before generating transaction');
-        }
-
         $payload = [
             'amount' => $this->amount,
             'currency' => $this->currency,
