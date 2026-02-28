@@ -8,7 +8,7 @@ use SimPay\Laravel\Services\Sms\Sms;
 
 class SimPay
 {
-    public const string VERSION = '1.4.3';
+    public const string VERSION = '1.4.4';
 
     public function payment(): Payment
     {
