@@ -4,6 +4,7 @@ namespace SimPay\Laravel;
 
 use SimPay\Laravel\Services\DirectBilling\DirectBilling;
 use SimPay\Laravel\Services\Payment\Payment;
+use SimPay\Laravel\Services\Sending\Sending;
 use SimPay\Laravel\Services\Sms\Sms;
 
 class SimPay
@@ -23,5 +24,10 @@ class SimPay
     public function sms(): Sms
     {
         return new Sms();
+    }
+
+    public function sending(): Sending
+    {
+        return new Sending();
     }
 }
