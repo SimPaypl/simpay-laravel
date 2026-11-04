@@ -3,6 +3,7 @@
 namespace SimPay\Laravel\Exceptions;
 
 use Exception;
+use Throwable;
 
 class SimPayException extends Exception
 {

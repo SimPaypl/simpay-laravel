@@ -13,5 +13,9 @@ return [
         'service_id' => env('SIMPAY_PAYMENT_SERVICE_ID'),
         'hash' => env('SIMPAY_PAYMENT_SERVICE_HASH'),
     ],
+    'sending' => [
+        // default sender name for the "simpay" notification channel
+        'override' => env('SIMPAY_SENDING_OVERRIDE'),
+    ],
     'api_url' => env('SIMPAY_API_URL', 'https://api.simpay.pl'),
 ];
