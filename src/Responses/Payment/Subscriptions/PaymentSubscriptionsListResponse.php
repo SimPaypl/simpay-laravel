@@ -9,7 +9,7 @@ final readonly class PaymentSubscriptionsListResponse
 {
     public function __construct(
         /** @var PaymentSubscriptionResponse[] $subscriptions */
-        public array $subscriptions = [],
+        public array $subscriptions,
         public PaginationResponse $pagination,
     )
     {

@@ -23,12 +23,12 @@ final readonly class TransactionInfoResponse
         public ?CustomerResponse         $customer,
         public ?CustomerFullDataResponse $billing,
         public ?CustomerFullDataResponse $shipping,
-        public array                     $cart = [],
-        public ?array                    $additional = [],
-        public ?Carbon                   $paidAt = null,
-        public ?Carbon                   $expiresAt = null,
-        public ?Carbon                   $createdAt = null,
-        public ?Carbon                   $updatedAt = null,
+        public array                     $cart,
+        public ?array                    $additional,
+        public ?Carbon                   $paidAt,
+        public ?Carbon                   $expiresAt,
+        public ?Carbon                   $createdAt,
+        public ?Carbon                   $updatedAt,
         public string                    $payerTransactionId,
     )
     {
