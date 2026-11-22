@@ -59,10 +59,10 @@ final readonly class TransactionInfoResponse
             CustomerFullDataResponse::from($json['shipping'] ?? null),
             $finalCart,
             $json['additional'] ?? null,
-            $json['paid_at'] ? Carbon::parse($json['paid_at']) : null,
-            $json['expires_at'] ? Carbon::parse($json['expires_at']) : null,
-            $json['created_at'] ? Carbon::parse($json['created_at']) : null,
-            $json['updated_at'] ? Carbon::parse($json['updated_at']) : null,
+            !empty($json['paid_at']) ? Carbon::parse($json['paid_at']) : null,
+            !empty($json['expires_at']) ? Carbon::parse($json['expires_at']) : null,
+            !empty($json['created_at']) ? Carbon::parse($json['created_at']) : null,
+            !empty($json['updated_at']) ? Carbon::parse($json['updated_at']) : null,
             $json['payer_transaction_id'],
         );
     }

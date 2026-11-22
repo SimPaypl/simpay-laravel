@@ -19,11 +19,11 @@ final readonly class AmountCalculatorResponse
     public static function from(array $json)
     {
         return new self(
-            $json['orange'] ? AmountResponse::from($json['orange']) : null,
-            $json['play'] ? AmountResponse::from($json['play']) : null,
-            $json['t-mobile'] ? AmountResponse::from($json['t-mobile']) : null,
-            $json['plus'] ? AmountResponse::from($json['plus']) : null,
-            $json['netia'] ? AmountResponse::from($json['netia']) : null,
+            !empty($json['orange']) ? AmountResponse::from($json['orange']) : null,
+            !empty($json['play']) ? AmountResponse::from($json['play']) : null,
+            !empty($json['t-mobile']) ? AmountResponse::from($json['t-mobile']) : null,
+            !empty($json['plus']) ? AmountResponse::from($json['plus']) : null,
+            !empty($json['netia']) ? AmountResponse::from($json['netia']) : null,
         );
     }
 }
