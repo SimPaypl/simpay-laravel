@@ -18,7 +18,7 @@ final readonly class TransactionInfoResponse
         public float             $value,
         public float             $valueNet,
         public float             $valueCreated,
-        public AmountType        $valueCreatedType,
+        public ?AmountType       $valueCreatedType,
         public ?MobileCarrier    $carrier,
         public NotifyResponse    $notify,
         public ?float            $score = null,
@@ -33,17 +33,17 @@ final readonly class TransactionInfoResponse
         return new self(
             $json['id'],
             TransactionStatus::from($json['status']),
-            $json['phoneNumber'],
+            $json['phoneNumber'] ?? null,
             $json['control'] ?? null,
             $json['value'] ?? 0.0,
             $json['value_net'] ?? 0.0,
             $json['value_created'] ?? 0.0,
-            $json['value_created_type'] ? AmountType::from(strtolower($json['value_created_type'])) : null,
-            $json['operator'] ? MobileCarrier::from($json['operator']) : null,
+            !empty($json['value_created_type']) ? AmountType::from(strtolower($json['value_created_type'])) : null,
+            !empty($json['operator']) ? MobileCarrier::from($json['operator']) : null,
             NotifyResponse::from($json['notify']),
             $json['score'] ?? null,
-            $json['created_at'] ? Carbon::parse($json['created_at']) : null,
-            $json['updated_at'] ? Carbon::parse($json['updated_at']) : null,
+            !empty($json['created_at']) ? Carbon::parse($json['created_at']) : null,
+            !empty($json['updated_at']) ? Carbon::parse($json['updated_at']) : null,
         );
     }
 }
