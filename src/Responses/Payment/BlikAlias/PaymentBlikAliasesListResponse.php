@@ -9,7 +9,7 @@ final readonly class PaymentBlikAliasesListResponse
 {
     public function __construct(
         /** @var PaymentBlikAliasResponse[] $aliases */
-        public array              $aliases = [],
+        public array              $aliases,
         public PaginationResponse $pagination,
     )
     {

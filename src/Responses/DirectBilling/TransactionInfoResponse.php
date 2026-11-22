@@ -19,7 +19,7 @@ final readonly class TransactionInfoResponse
         public float             $valueNet,
         public float             $valueCreated,
         public AmountType        $valueCreatedType,
-        public ?MobileCarrier    $carrier = null,
+        public ?MobileCarrier    $carrier,
         public NotifyResponse    $notify,
         public ?float            $score = null,
         public ?Carbon           $createdAt = null,
